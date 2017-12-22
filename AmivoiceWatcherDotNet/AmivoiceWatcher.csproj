@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.WinForms.45.0.0\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.45.0.0\build\CefSharp.WinForms.props')" />
+  <Import Project="..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{287617CD-9C2F-4011-957C-327CA17EE2E3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AmivoiceWatcher</RootNamespace>
+    <AssemblyName>AmivoiceWatcher</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>AmivoiceWatcher.AmivoiceWatcher</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AmivoiceWatcher.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CircularProgressBar, Version=2.5.6403.13419, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CircularProgressBar.2.5.6403.13419\lib\net35-client\CircularProgressBar.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="INIFileParser, Version=2.3.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.3.0\lib\net20\INIFileParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.4\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\packages\RabbitMQ.Client.3.5.7\lib\net40\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WinFormAnimation, Version=1.5.6298.3372, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinFormAnimation.1.5.6298.3372\lib\net35-client\WinFormAnimation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="_Forms\FormCefsharpDummy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormCefsharpDummy.Designer.cs">
+      <DependentUpon>FormCefsharpDummy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\FormNotificationPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormNotificationPanel.Designer.cs">
+      <DependentUpon>FormNotificationPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\FormNotificationPanelMinimized.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormNotificationPanelMinimized.Designer.cs">
+      <DependentUpon>FormNotificationPanelMinimized.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\FormSuperNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormSuperNotification.Designer.cs">
+      <DependentUpon>FormSuperNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\FormTaskbarBlink.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormTaskbarBlink.Designer.cs">
+      <DependentUpon>FormTaskbarBlink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\FormWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormWaiting.Designer.cs">
+      <DependentUpon>FormWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\NotificationPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\NotificationPopup.Designer.cs">
+      <DependentUpon>NotificationPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\TaskbarButtonOverlayIcon.xaml.cs">
+      <DependentUpon>TaskbarButtonOverlayIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Src\CodeBackup.cs" />
+    <Compile Include="_Src\Colors.cs" />
+    <Compile Include="_Src\ComputerInfo.cs" />
+    <Compile Include="_Src\Configuration.cs" />
+    <Compile Include="_Src\Debug.cs" />
+    <Compile Include="_Src\DownloadHandler.cs" />
+    <Compile Include="_Src\EventHook.cs" />
+    <Compile Include="_Src\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Src\FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Src\Globals.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AmivoiceWatcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Src\NotificationMessage.cs" />
+    <Compile Include="_Src\MyPath.cs" />
+    <Compile Include="_Src\RabbitMQWrapper.cs" />
+    <Compile Include="_Src\UserActivity.cs" />
+    <Compile Include="_Src\UserActivityThread.cs" />
+    <Compile Include="_Src\WindowsRegistry.cs" />
+    <Compile Include="_Forms\FormConfigNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormConfigNotification.Designer.cs">
+      <DependentUpon>FormConfigNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\FormDummy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\FormDummy.Designer.cs">
+      <DependentUpon>FormDummy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Forms\FormAnimator.cs" />
+    <Compile Include="_Forms\NativeMethods.cs" />
+    <Compile Include="_Forms\Notification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Forms\Notification.designer.cs">
+      <DependentUpon>Notification.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AmivoiceWatcher.resx">
+      <DependentUpon>AmivoiceWatcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormCefsharpDummy.resx">
+      <DependentUpon>FormCefsharpDummy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormDummy.resx">
+      <DependentUpon>FormDummy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormNotificationPanel.resx">
+      <DependentUpon>FormNotificationPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormNotificationPanelMinimized.resx">
+      <DependentUpon>FormNotificationPanelMinimized.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormSuperNotification.resx">
+      <DependentUpon>FormSuperNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormTaskbarBlink.resx">
+      <DependentUpon>FormTaskbarBlink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormWaiting.resx">
+      <DependentUpon>FormWaiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\NotificationPopup.resx">
+      <DependentUpon>NotificationPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Src\FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\FormConfigNotification.resx">
+      <DependentUpon>FormConfigNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Forms\Notification.resx">
+      <DependentUpon>Notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="AmivoiceWatcher.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LocalAppData\notification_setting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css.map" />
+    <None Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css.map" />
+    <None Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css.map" />
+    <None Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css.map" />
+    <None Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css.map" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="LocalAppData\Template\font-awesome-4.7.0\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LocalAppData\Template\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LocalAppData\Template\font-awesome-4.7.0\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LocalAppData\Template\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="LocalAppData\Template\font-awesome-4.7.0\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AmivoiceWatcher.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\ami_watcher.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\ami_watcher_NewMessage.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\n.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.css" />
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-grid.min.css" />
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.css" />
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.css" />
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\css\bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.js" />
+    <Content Include="LocalAppData\Template\bootstrap-4.0.0-alpha.6-dist\js\bootstrap.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="LocalAppData\Template\font-awesome-4.7.0\css\font-awesome.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\font-awesome-4.7.0\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\Button-Close-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\Button-Info-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\Button-Warning-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\Help-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\image\ok-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\jquery-3.2.1.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\LongNotificationReload.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\LongNotificationMinimizedTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\normalize.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\notification.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\NotificationTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalAppData\Template\NotificationTemplatePure.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\loading.gif" />
+    <None Include="Resources\loading.png" />
+    <EmbeddedResource Include="_Forms\x_button.png" />
+    <None Include="AmivoiceWatcher.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LocalAppData\Screenshots\" />
+    <Folder Include="Reference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="_Forms\TaskbarButtonOverlayIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmivoiceWatcherLauncer\AmivoiceWatcherLauncher.csproj">
+      <Project>{0a6980bd-47d8-4bfb-9e8d-571d76bd3cb0}</Project>
+      <Name>AmivoiceWatcherLauncher</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <ProjectExtensions />
+  <Import Project="..\packages\cef.redist.x64.3.2454.1344\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2454.1344\build\cef.redist.x64.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2454.1344\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2454.1344\build\cef.redist.x64.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.45.0.0\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.45.0.0\build\CefSharp.WinForms.props'))" />
+  </Target>
+  <Import Project="..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2454.1344\build\cef.redist.x86.targets')" />
+  <Import Project="..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.45.0.0\build\CefSharp.Common.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

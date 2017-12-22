@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=edge,8,9">
+    <link rel="stylesheet" type="text/css" href="normalize.css" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="jquery-3.2.1.min.js"></script>
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10pt;
+        }
+
+        html, body {
+            /*background-color: black;
+            color: white;*/
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        html,
+        body {
+            scrollbar-face-color: #ffffff;
+            scrollbar-shadow-color: #2D2C4D;
+            scrollbar-highlight-color: #7D7E94;
+            scrollbar-3dlight-color: #7D7E94;
+            scrollbar-darkshadow-color: #2D2C4D;
+            scrollbar-track-color: #7D7E94;
+            scrollbar-arrow-color: #C1C1D1;
+        }
+
+        #wc-notification{
+            height: 100%;
+            width: 100%;
+        }
+
+        #wc-notification.theme-black{
+            background-color: black;
+            color: white;
+        }
+
+        #wc-notification.theme-green{
+            background-color: #89e54d;
+            color: black;
+        }
+
+        #wc-notification.theme-skyblue{
+            background-color: #89a3c5;
+            color: white;
+        }
+
+        #wc-notification.theme-skyblue2{
+            background-color: #89a3c5;
+            color: black;
+        }
+
+        #wc-notification.theme-white{
+            background-color: white;
+            color: black;
+        }
+
+        #wc-notification.theme-pink{
+            background-color: #ffd6d5;
+            color: #d08686;
+        }
+
+         #wc-notification.theme-yellow{
+            background-color: #ffe5c8;
+            color: #d0975c;
+        }
+
+        #wc-notification.theme-grey{
+            background-color: #cccccc;
+            color: black;
+        }
+
+        .padding-leftmost{
+          padding-left:8pt !important;
+        }
+
+        #wc-notification > .title {
+            font-weight: 700;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            cursor: move;
+        }
+
+        #wc-notification .title-row {
+            display: table;
+            /*height: 100%;*/
+            width: 100%;
+        }
+
+        #wc-notification .title-row .title {
+            display: table-cell;
+            width: 100%;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            vertical-align: middle;
+            font-size: 1.1em;
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        #wc-notification .title-row .title:hover {
+            cursor: move;
+        }
+
+        div#minimize-button {
+            display: table-cell;
+            /* position: absolute; */
+            font-size: 1.5em;
+            padding: 0.1em 0.2em;
+            cursor: pointer;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+            div#minimize-button i {
+                text-transform: none;
+                /*font-size:3em;*/
+            }
+
+        div.logo {
+            display: none;
+            height: 100%;
+        }
+
+            div.logo img {
+                height: 100%;
+            }
+    </style>
+</head>
+<body>
+    <div class="logo"><img src="image/logo.png" /></div>
+
+    <div id="wc-notification" class="theme-black">
+        <div class="title-row">
+            <div class="title padding-leftmost">Amivoice Assistant</div>
+            <div id="minimize-button"><i class="fa fa-window-maximize"></i></div>
+        </div>
+    </div>
+
+    <script>
+        function externalFx_setTheme(para) {
+            setTheme(para)
+        }
+
+        function setTheme(strIn) {
+            
+            var obj2change = $("#wc-notification")
+            
+            obj2change.removeClass(function (index, className) {
+                return (className.match(/(^|\s)theme-\S+/g) || []).join(' ');
+            });
+
+            obj2change.addClass("theme-" + strIn)
+
+        }
+
+        $("#wc-notification .title-row > div:first").off("mousedown").on("mousedown", function () {
+
+            bound.mousedown()
+            //window.external.ExternalHide()
+
+        })
+        
+
+        $("#minimize-button").off("click").on("click", function () {
+            
+            bound.externalHide()
+            //window.external.ExternalHide()
+
+        })
+    </script>
+</body>
+</html>

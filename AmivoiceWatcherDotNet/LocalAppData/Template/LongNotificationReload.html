@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=edge,8,9">
+    <meta name="application-name" content="@AmiVoice Watcher (Reload)@">
+    <link rel="stylesheet" type="text/css" href="normalize.css" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="jquery-3.2.1.min.js"></script>    
+    <link rel="stylesheet" href="bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css">
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10pt;
+        }
+
+        html, body {
+            /*background-color: black;
+            color: white;*/
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        html,
+        body {
+            scrollbar-face-color: #ffffff;
+            scrollbar-shadow-color: #2D2C4D;
+            scrollbar-highlight-color: #7D7E94;
+            scrollbar-3dlight-color: #7D7E94;
+            scrollbar-darkshadow-color: #2D2C4D;
+            scrollbar-track-color: #7D7E94;
+            scrollbar-arrow-color: #C1C1D1;
+        }
+
+        #wc-notification{
+            height: 100%;
+            width: 100%;
+        }
+
+        #wc-notification.theme-black{
+            background-color: black;
+            color: white;
+        }
+
+        #wc-notification.theme-green{
+            background-color: #89e54d;
+            color: black;
+        }
+
+        #wc-notification.theme-skyblue{
+            background-color: #89a3c5;
+            color: white;
+        }
+
+        #wc-notification.theme-skyblue2{
+            background-color: #89a3c5;
+            color: black;
+        }
+
+        #wc-notification.theme-white{
+            background-color: white;
+            color: black;
+        }
+
+        #wc-notification.theme-pink{
+            background-color: #ffd6d5;
+            color: #d08686;
+        }
+
+         #wc-notification.theme-yellow{
+            background-color: #ffe5c8;
+            color: #d0975c;
+        }
+
+
+        #wc-notification.theme-grey{
+            background-color: #cccccc;
+            color: black;
+        }
+
+        .padding-leftmost{
+          padding-left:8pt !important;
+        }
+
+        #wc-notification > .title {
+            font-weight: 700;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            cursor: move;
+        }
+
+        #wc-notification .title-row {
+            display: table;
+            /*height: 100%;*/
+            width: 100%;
+        }
+
+        #wc-notification .title-row .title {
+            display: table-cell;
+            width: 100%;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            vertical-align: middle;
+            font-size: 1.1em;
+            padding-top: 1em;
+            padding-bottom: 1em;
+        }
+
+        #wc-notification .title-row .title:hover {
+            cursor: move;
+        }
+
+        div#minimize-button {
+            display: table-cell;
+            /* position: absolute; */
+            font-size: 1.5em;
+            padding: 0.1em 0.2em;
+            cursor: pointer;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        div#minimize-button i {
+            text-transform: none;
+            /*font-size:3em;*/
+        }
+
+        div.logo {
+            display: none;
+            height: 100%;
+        }
+
+        div.logo img {
+            height: 100%;
+        }
+
+        .wc-reload{
+            display: table;
+            width: 100%;
+        }
+
+        .wc-reload > *{
+            display: table-cell;
+            width: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .wc-reload span{
+            display: block;
+            margin-bottom: 1em;
+        }
+
+        .wc-reload .fa{
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo"><img src="image/logo.png" /></div>
+
+    <div id="wc-notification" class="theme-dark">
+        <div class="title-row">
+            <div class="title padding-leftmost">Amivoice</div>
+            <div id="minimize-button"><i class="fa fa-window-maximize"></i></div>
+        </div>
+        <div class='wc-reload'>
+            <div>
+                <span><i class="fa fa-exclamation-triangle text-warning"></i> Trying to Connect to Server...</span>
+                <br />
+                <div id="reload"><a class="btn btn-warning" href="#"><i class="fa fa-refresh"></i> Reload</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //window.Tether = function () {
+        //    throw new Error('Your Bootstrap may actually need Tether.');
+        //};
+
+        function externalFx_setTheme(para) {
+            setTheme(para)
+        }
+
+        function sendPostRequest(url,dataString) {
+            var returnJson = "";
+
+            var data = JSON.parse(dataString)
+
+            //alert(url)
+
+            //alert(dataString)
+
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                success: function (html) {
+                    //alert("success")
+                    returnJson = html;
+                    //return true;
+                },
+                fail: function (){
+                    returnJson = "fail";
+                },
+                async: false
+            });
+
+            var i = 0
+            while (returnJson == "") {
+                setTimeout(function () { return; }, 1000);
+                i++;
+                if (i > 5) {
+                    break;
+                }
+            }
+
+            return returnJson;
+
+        }
+
+        function sendGetRequest(url) {
+            //alert(url)
+            //alert(dataString)
+
+            var returnJson = "";
+
+            //var data = JSON.parse(dataString)
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                //data: data,
+                success: function (html) {
+                    //alert(html);
+                    //alert("success")
+                    returnJson = JSON.stringify(html);
+                    //return true;
+                },
+                fail: function () {
+                    returnJson = "fail";
+                },
+                async: false
+            });
+
+            //var i = 0
+            //while (returnJson == "") {
+            //    setTimeout(function () { return; }, 1000);
+            //    i++;
+            //    if (i > 5) {
+            //        break;
+            //    }
+            //}
+
+            return returnJson;
+
+        }
+
+        function setTheme(strIn) {
+            
+            var obj2change = $("#wc-notification")
+
+            obj2change.removeClass(function (index, className) {
+                return (className.match(/(^|\s)theme-\S+/g) || []).join(' ');
+            });
+
+            obj2change.addClass("theme-" + strIn)
+        }
+
+        function log(m) {
+            console.log(m)
+        }
+
+        var clientAppFn = {
+            mousedownOnTitle: false,
+
+            afterSetTheme: function (theme) {
+                try {
+                    bound.afterSetTheme(theme);
+                    // window.external.SaveSetting(theme);
+                }
+                catch (err) {
+                    log(err.message);
+                }
+            },
+
+            SaveSetting: function (theme) {
+                try {
+                    bound.saveSetting(theme);
+                    // window.external.SaveSetting(theme);
+                }
+                catch (err) {
+                    log(err.message);
+                }
+            },
+
+            MouseDown: function () {
+                try {
+                    bound.mousedown()
+                    // window.external.SaveSetting(theme);
+                }
+                catch (err) {
+                    log(err.message);
+                }
+            },
+
+            MouseUp: function () {
+                try {
+                    bound.mouseup()
+                    // window.external.SaveSetting(theme);
+                }
+                catch (err) {
+                    log(err.message);
+                }
+            }
+        }
+
+        $("#minimize-button").off("click").on("click", function () {
+
+            bound.externalHide()
+
+            //window.external.ExternalHide()
+
+        })
+
+        var set_DragFeature = function () {
+
+            $("#wc-notification .title-row > div:first").off("mousedown").on("mousedown", function (e) {
+
+                clientAppFn.mousedownOnTitle = true;
+
+                setTimeout(function () {
+                    if (clientAppFn.mousedownOnTitle) {
+                        clientAppFn.MouseDown()
+                    }
+                }, 100);
+
+            })
+
+            $("#wc-notification .title-row > div:first").off("mouseout").on("mouseout", function () {
+                clientAppFn.mousedownOnTitle = false;
+                clientAppFn.MouseUp()
+
+            })
+
+        }
+
+        
+
+        $("#reload").off("click").on("click", function () {
+            bound.externalReload()
+
+
+
+        });
+
+        set_DragFeature();
+
+
+    </script>
+</body>
+</html>
